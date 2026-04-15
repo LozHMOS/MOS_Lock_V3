@@ -281,12 +281,12 @@ def inject_css(high_contrast: bool = False):
         }
         """
 
-    # Full inline high-specificity CSS block – dark text on ALL light backgrounds
-    st.markdown(f"""
+    # Full inline high-specificity CSS block (plain string – no f-string issues)
+    st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
-    :root {{
+    :root {
       --mos-cyan: #3ECFCF;
       --mos-navy: #071539;
       --mos-near-black: #2d2926;
@@ -303,7 +303,7 @@ def inject_css(high_contrast: bool = False):
       --card-bg: #FFFFFF;
       --border-color: #E2E6EA;
       --font-stack: 'Helvetica Neue', 'Inter', 'Helvetica', 'Arial', sans-serif;
-    }}
+    }
 
     /* FORCE DARK TEXT ON EVERY LIGHT BACKGROUND */
     html, body, [class*="css"], .stApp, .stMarkdown, p, label, span, div,
@@ -315,40 +315,40 @@ def inject_css(high_contrast: bool = False):
       font-family: var(--font-stack) !important;
       font-size: 16px !important;
       color: var(--mos-near-black) !important;
-    }}
+    }
 
-    .stApp {{ background-color: var(--page-bg) !important; }}
+    .stApp { background-color: var(--page-bg) !important; }
 
     /* Tabs – light background, forced dark text */
-    .stTabs [data-baseweb="tab"] {{
+    .stTabs [data-baseweb="tab"] {
       background-color: #e8ecf0 !important;
       color: #212529 !important;
-    }}
+    }
 
     /* KPI / Metric cards */
-    div[data-testid="stMetric"] {{
+    div[data-testid="stMetric"] {
       background: var(--card-bg) !important;
       color: #212529 !important;
-    }}
+    }
 
     /* Risk / verdict boxes */
-    .risk-low, .risk-medium, .risk-high, .verdict-banner, .stop-alert {{
+    .risk-low, .risk-medium, .risk-high, .verdict-banner, .stop-alert {
       color: #212529 !important;
-    }}
+    }
 
     /* Permit frame & tables */
-    .permit-frame, .rule-table, .compartment-grid {{
+    .permit-frame, .rule-table, .compartment-grid {
       background: #f8f9fa !important;
       color: #212529 !important;
-    }}
+    }
 
     /* Footer & progress text */
-    .footer, .prog-text, .mos-footer {{
+    .footer, .prog-text, .mos-footer {
       color: #343a40 !important;
-    }}
+    }
 
     /* Sidebar remains dark with white text */
-    section[data-testid="stSidebar"] * {{ color: var(--mos-white) !important; }}
+    section[data-testid="stSidebar"] * { color: var(--mos-white) !important; }
     </style>
     """, unsafe_allow_html=True)
 
