@@ -1,0 +1,3 @@
+SESSION_ID=sesn_011Ca51Nxb3UfGXz15xooFfF
+AGENT_ID=agent_011CZtocfpSLLACtBTknn93u
+ENV_ID=env_01GgjkYLBcwjqABdV8Bgpw8a
