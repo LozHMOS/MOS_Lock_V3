@@ -1,587 +1,191 @@
-/*
- * moslock_branding/theme.css
- * MOSLock V3 — Mapped Out Solutions® Brand Stylesheet
- * All visual styling for the Streamlit app lives here.
- * Swap colours/fonts by editing the :root variables below.
- *
- * Tablet target: Samsung Galaxy Tab S10, 1920×1200, 10.1-inch
- * Min touch target: 48px  |  Body font: 16px  |  Headers: 20px+
- */
-
-/* ── Google Fonts (online) — Helvetica Neue system font takes priority ── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-
-/* ── CSS Custom Properties (Brand Tokens) ────────────────────────────── */
-:root {
-  /* Brand palette */
-  --mos-cyan:        #3ECFCF;
-  --mos-navy:        #071539;
-  --mos-near-black:  #2d2926;
-  --mos-purple:      #D04EFF;
-  --mos-blue:        #007BFF;
-  --mos-white:       #FFFFFF;
-
-  /* Safety colours — semantic meaning preserved */
-  --safe-green:      #1ABF74;
-  --caution-amber:   #F5A623;
-  --danger-red:      #E8392D;
-  --stop-red:        #CC0000;
-  --info-teal:       #3ECFCF;
-
-  /* Surfaces */
-  --sidebar-bg:      #071539;
-  --page-bg:         #F4F6F9;
-  --card-bg:         #FFFFFF;
-  --border-color:    #E2E6EA;
-
-  /* Typography */
-  --font-stack:      'Helvetica Neue', 'Inter', 'Helvetica', 'Arial', sans-serif;
-  --font-size-body:  16px;
-  --font-size-small: 14px;
-  --font-size-large: 18px;
-  --font-size-h1:    28px;
-  --font-size-h2:    22px;
-  --font-size-h3:    18px;
-  --font-size-btn:   17px;
-  --font-size-label: 13px;
-
-  /* Spacing */
-  --radius:          8px;
-  --radius-lg:       12px;
-  --shadow:          0 2px 12px rgba(7,21,57,0.10);
-  --shadow-hover:    0 4px 20px rgba(7,21,57,0.18);
-}
-
-/* ── High Contrast Mode ──────────────────────────────────────────────── */
-body.high-contrast {
-  --page-bg:      #000000;
-  --card-bg:      #111111;
-  --border-color: #FFFFFF;
-  --mos-cyan:     #00FFFF;
-  --safe-green:   #00FF88;
-  --caution-amber:#FFCC00;
-  --danger-red:   #FF2200;
-  color: #FFFFFF !important;
-}
-
-/* ── Global Reset & Typography ──────────────────────────────────────── */
-html, body, [class*="css"] {
-  font-family: var(--font-stack) !important;
-  font-size:   var(--font-size-body) !important;
-  color:        var(--mos-near-black);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Remove default Streamlit top padding */
-.block-container {
-  padding-top: 1rem !important;
-  padding-bottom: 2rem !important;
-  max-width: 100% !important;
-}
-
-/* ── Streamlit Page Background ─────────────────────────────────────── */
-.stApp {
-  background-color: var(--page-bg) !important;
-}
-
-/* ── Sidebar ────────────────────────────────────────────────────────── */
-section[data-testid="stSidebar"] {
-  background-color: var(--sidebar-bg) !important;
-  border-right: 2px solid rgba(62,207,207,0.25) !important;
-}
-
-section[data-testid="stSidebar"] * {
-  color: var(--mos-white) !important;
-}
-
-section[data-testid="stSidebar"] .stMarkdown p,
-section[data-testid="stSidebar"] label {
-  color: rgba(255,255,255,0.85) !important;
-  font-size: var(--font-size-small) !important;
-}
-
-section[data-testid="stSidebar"] h1,
-section[data-testid="stSidebar"] h2,
-section[data-testid="stSidebar"] h3 {
-  color: var(--mos-cyan) !important;
-  font-size: var(--font-size-large) !important;
-  font-weight: 700 !important;
-  margin-top: 1.2rem !important;
-  margin-bottom: 0.4rem !important;
-}
-
-/* Sidebar dividers */
-section[data-testid="stSidebar"] hr {
-  border-color: rgba(62,207,207,0.3) !important;
-  margin: 0.8rem 0 !important;
-}
-
-/* Sidebar selectbox / inputs */
-section[data-testid="stSidebar"] .stSelectbox > div > div,
-section[data-testid="stSidebar"] .stTextInput > div > div > input {
-  background-color: rgba(255,255,255,0.08) !important;
-  border: 1px solid rgba(62,207,207,0.4) !important;
-  border-radius: var(--radius) !important;
-  color: var(--mos-white) !important;
-  font-size: var(--font-size-body) !important;
-  min-height: 48px !important;
-}
-
-/* Sidebar toggle/checkbox */
-section[data-testid="stSidebar"] .stCheckbox label {
-  font-size: var(--font-size-body) !important;
-  min-height: 48px !important;
-  align-items: center !important;
-}
-
-/* Slider */
-section[data-testid="stSidebar"] .stSlider [data-baseweb="slider"] div[role="slider"] {
-  background-color: var(--mos-cyan) !important;
-  border-color: var(--mos-cyan) !important;
-}
-
-/* ── Buttons ─────────────────────────────────────────────────────────── */
-.stButton > button {
-  background-color: var(--mos-cyan) !important;
-  color:            var(--mos-near-black) !important;
-  font-family:      var(--font-stack) !important;
-  font-size:        var(--font-size-btn) !important;
-  font-weight:      700 !important;
-  border:           none !important;
-  border-radius:    var(--radius) !important;
-  padding:          12px 28px !important;
-  min-height:       48px !important;
-  min-width:        120px !important;
-  cursor:           pointer !important;
-  transition:       background-color 0.2s, box-shadow 0.2s !important;
-  letter-spacing:   0.3px !important;
-}
-
-.stButton > button:hover {
-  background-color: #2BBBBB !important;
-  box-shadow:       var(--shadow-hover) !important;
-}
-
-.stButton > button:active {
-  background-color: #1FA8A8 !important;
-  transform: translateY(1px) !important;
-}
-
-/* Secondary button (danger/stop) — override with data attribute or class hack */
-.stButton.danger > button {
-  background-color: var(--danger-red) !important;
-  color:            var(--mos-white) !important;
-}
-
-/* ── Main Area Headers ──────────────────────────────────────────────── */
-.stApp h1 {
-  font-size:   var(--font-size-h1) !important;
-  font-weight: 900 !important;
-  color:       var(--mos-navy) !important;
-  letter-spacing: -0.5px !important;
-  margin-bottom: 0.25rem !important;
-}
-
-.stApp h2 {
-  font-size:   var(--font-size-h2) !important;
-  font-weight: 700 !important;
-  color:       var(--mos-navy) !important;
-  border-bottom: 2px solid var(--mos-cyan) !important;
-  padding-bottom: 6px !important;
-  margin-bottom: 1rem !important;
-}
-
-.stApp h3 {
-  font-size:   var(--font-size-h3) !important;
-  font-weight: 700 !important;
-  color:       var(--mos-navy) !important;
-}
-
-/* ── Tabs ────────────────────────────────────────────────────────────── */
-.stTabs [data-baseweb="tab-list"] {
-  background-color: var(--mos-navy) !important;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
-  padding: 4px 8px 0 8px !important;
-  gap: 2px !important;
-}
-
-.stTabs [data-baseweb="tab"] {
-  background-color: transparent !important;
-  color: rgba(255,255,255,0.65) !important;
-  font-family: var(--font-stack) !important;
-  font-size: var(--font-size-body) !important;
-  font-weight: 400 !important;
-  border-radius: var(--radius) var(--radius) 0 0 !important;
-  padding: 12px 20px !important;
-  min-height: 48px !important;
-  border: none !important;
-  transition: color 0.2s !important;
-}
-
-.stTabs [aria-selected="true"] {
-  background-color: var(--mos-cyan) !important;
-  color: var(--mos-near-black) !important;
-  font-weight: 700 !important;
-}
-
-.stTabs [data-baseweb="tab"]:hover {
-  color: var(--mos-cyan) !important;
-}
-
-.stTabs [data-baseweb="tab-panel"] {
-  background-color: var(--card-bg) !important;
-  border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg) !important;
-  padding: 1.5rem !important;
-  border: 1px solid var(--border-color) !important;
-  box-shadow: var(--shadow) !important;
-}
-
-/* ── KPI Cards ──────────────────────────────────────────────────────── */
-.kpi-card {
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  border-left: 5px solid var(--mos-cyan);
-  padding: 16px 20px;
-  box-shadow: var(--shadow);
-  margin-bottom: 12px;
-}
-
-.kpi-card .kpi-value {
-  font-size: 32px;
-  font-weight: 900;
-  color: var(--mos-navy);
-  line-height: 1.1;
-}
-
-.kpi-card .kpi-label {
-  font-size: var(--font-size-label);
-  font-weight: 400;
-  color: var(--mos-black-60);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-top: 4px;
-}
-
-.kpi-card.safe    { border-left-color: var(--safe-green); }
-.kpi-card.caution { border-left-color: var(--caution-amber); }
-.kpi-card.danger  { border-left-color: var(--danger-red); }
-.kpi-card.stop    { border-left-color: var(--stop-red); }
-
-/* ── Status Badges ──────────────────────────────────────────────────── */
-.badge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: var(--font-size-label);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-.badge-safe    { background: rgba(26,191,116,0.15); color: #0D8C52; border: 1px solid #1ABF74; }
-.badge-caution { background: rgba(245,166,35,0.15); color: #C07C00; border: 1px solid #F5A623; }
-.badge-danger  { background: rgba(232,57,45,0.12);  color: #B31B0F; border: 1px solid #E8392D; }
-.badge-stop    { background: rgba(204,0,0,0.15);    color: #990000; border: 1px solid #CC0000; }
-.badge-info    { background: rgba(62,207,207,0.15); color: #1A8080; border: 1px solid #3ECFCF; }
-
-/* ── Verdict Banner ─────────────────────────────────────────────────── */
-.verdict-banner {
-  border-radius: var(--radius-lg);
-  padding: 20px 28px;
-  margin: 16px 0;
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: -0.3px;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.verdict-all-clear   { background: #1ABF74; color: #FFFFFF; }
-.verdict-discrepancy { background: #E8392D; color: #FFFFFF; }
-.verdict-review      { background: #F5A623; color: #1C1C1C; }
-.verdict-stop        { background: #CC0000; color: #FFFFFF; animation: pulse-stop 1s infinite; }
-
-@keyframes pulse-stop {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(204,0,0,0.5); }
-  50%       { box-shadow: 0 0 0 12px rgba(204,0,0,0); }
-}
-
-/* ── IFTTT Rule Table ────────────────────────────────────────────────── */
-.rule-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  margin-bottom: 16px;
-}
-
-.rule-table th {
-  background-color: var(--mos-navy);
-  color: var(--mos-white);
-  font-size: var(--font-size-small);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 12px 16px;
-  text-align: left;
-}
-
-.rule-table td {
-  background-color: var(--card-bg);
-  padding: 12px 16px;
-  font-size: var(--font-size-body);
-  border-bottom: 1px solid var(--border-color);
-  vertical-align: middle;
-}
-
-.rule-table tr:last-child td { border-bottom: none; }
-.rule-table tr:hover td { background-color: rgba(62,207,207,0.06); }
-
-/* ── Dataframe / Table ──────────────────────────────────────────────── */
-.stDataFrame {
-  border-radius: var(--radius) !important;
-  overflow-x: auto !important;          /* horizontal scroll on mobile */
-}
-
-.stDataFrame thead th {
-  background-color: var(--mos-navy) !important;
-  color: var(--mos-white) !important;
-  font-size: var(--font-size-small) !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.8px !important;
-}
-
-.stDataFrame tbody td {
-  font-size: var(--font-size-body) !important;
-}
-
-/* ── Metric Cards (Streamlit native) ───────────────────────────────── */
-[data-testid="stMetric"] {
-  background: var(--card-bg) !important;
-  border-radius: var(--radius-lg) !important;
-  border-left: 4px solid var(--mos-cyan) !important;
-  padding: 14px 18px !important;
-  box-shadow: var(--shadow) !important;
-}
-
-[data-testid="stMetricLabel"] {
-  font-size: var(--font-size-label) !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.8px !important;
-  color: var(--mos-black-60) !important;
-}
-
-[data-testid="stMetricValue"] {
-  font-size: 28px !important;
-  font-weight: 900 !important;
-  color: var(--mos-navy) !important;
-}
-
-/* ── Alert / Info / Warning boxes ───────────────────────────────────── */
-.stAlert[data-baseweb="notification"] {
-  border-radius: var(--radius) !important;
-  font-size: var(--font-size-body) !important;
-}
-
-/* ── Selectbox / Input ──────────────────────────────────────────────── */
-.stSelectbox > div > div,
-.stTextInput > div > div > input,
-.stNumberInput > div > div > input {
-  border-radius: var(--radius) !important;
-  border: 1.5px solid var(--border-color) !important;
-  font-size: var(--font-size-body) !important;
-  min-height: 48px !important;
-}
-
-.stSelectbox > div > div:focus-within,
-.stTextInput > div > div:focus-within {
-  border-color: var(--mos-cyan) !important;
-  box-shadow: 0 0 0 2px rgba(62,207,207,0.25) !important;
-}
-
-/* ── File uploader ──────────────────────────────────────────────────── */
-[data-testid="stFileUploader"] {
-  border: 2px dashed var(--mos-cyan) !important;
-  border-radius: var(--radius-lg) !important;
-  background: rgba(62,207,207,0.04) !important;
-  padding: 20px !important;
-}
-
-/* ── Camera input ────────────────────────────────────────────────────── */
-[data-testid="stCameraInput"] {
-  border-radius: var(--radius-lg) !important;
-  overflow: hidden !important;
-}
-
-/* ── Progress bar ────────────────────────────────────────────────────── */
-.stProgress > div > div > div > div {
-  background-color: var(--mos-cyan) !important;
-}
-
-/* ── Expander ────────────────────────────────────────────────────────── */
-.streamlit-expanderHeader {
-  background-color: rgba(7,21,57,0.06) !important;
-  border-radius: var(--radius) !important;
-  font-size: var(--font-size-body) !important;
-  font-weight: 700 !important;
-  color: var(--mos-navy) !important;
-  min-height: 48px !important;
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* ── Footer ─────────────────────────────────────────────────────────── */
-.mos-footer {
-  background-color: var(--mos-navy);
-  color: rgba(255,255,255,0.65);
-  padding: 20px 32px;
-  font-size: var(--font-size-small);
-  margin-top: 40px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-
-.mos-footer a { color: var(--mos-cyan) !important; text-decoration: none; }
-.mos-footer .strapline { font-style: italic; color: var(--mos-cyan); }
-
-/* ── Compartment Status Grid ─────────────────────────────────────────── */
-.compartment-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 10px;
-  margin: 12px 0;
-}
-
-.compartment-cell {
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  font-size: var(--font-size-small);
-  font-weight: 700;
-  text-align: center;
-  border: 2px solid transparent;
-  min-height: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-.compartment-cell .comp-id { font-size: 11px; opacity: 0.75; }
-.compartment-cell.isolated { background: rgba(26,191,116,0.15); border-color: #1ABF74; color: #0D7A44; }
-.compartment-cell.energised { background: rgba(232,57,45,0.12); border-color: #E8392D; color: #9A1F17; }
-.compartment-cell.unknown   { background: rgba(245,166,35,0.12); border-color: #F5A623; color: #8A5E00; }
-
-/* ── Lock count chip ─────────────────────────────────────────────────── */
-.lock-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(62,207,207,0.1);
-  border: 1.5px solid var(--mos-cyan);
-  border-radius: 24px;
-  padding: 6px 16px;
-  font-size: var(--font-size-body);
-  font-weight: 700;
-  color: var(--mos-navy);
-}
-
-/* ── Stop alert (indicator_fault) ────────────────────────────────────── */
-.stop-alert {
-  background: var(--stop-red);
-  color: #FFFFFF;
-  border-radius: var(--radius-lg);
-  padding: 24px 28px;
-  font-size: 20px;
-  font-weight: 900;
-  text-align: center;
-  animation: pulse-stop 1s infinite;
-  margin: 16px 0;
-}
-
-/* ── Scrollable table wrapper ────────────────────────────────────────── */
-.scroll-table-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-/* ── Mode indicator pill ─────────────────────────────────────────────── */
-.mode-pill {
-  display: inline-block;
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-size: var(--font-size-small);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-.mode-pill.demo { background: rgba(0,123,255,0.15); color: #0057B8; border: 1px solid #007BFF; }
-.mode-pill.live { background: rgba(26,191,116,0.15); color: #0D8C52; border: 1px solid #1ABF74; }
-
-/* ── 12-Step Progress indicator ─────────────────────────────────────── */
-.step-indicator {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin: 12px 0;
-}
-
-.step-dot {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  border: 2px solid transparent;
-  cursor: default;
-}
-
-.step-dot.complete  { background: var(--safe-green);    color: white; }
-.step-dot.active    { background: var(--mos-cyan);       color: var(--mos-navy); border-color: var(--mos-navy); }
-.step-dot.pending   { background: rgba(7,21,57,0.08);   color: var(--mos-black-60); border-color: var(--border-color); }
-.step-dot.isolation { background: var(--caution-amber); color: white; }
-
-/* ── Permit header card ──────────────────────────────────────────────── */
-.permit-header {
-  background: linear-gradient(135deg, var(--mos-navy) 0%, #0D2A6E 100%);
-  color: white;
-  border-radius: var(--radius-lg);
-  padding: 20px 24px;
-  margin-bottom: 16px;
-  border-left: 5px solid var(--mos-cyan);
-}
-
-.permit-header h3 { color: var(--mos-cyan) !important; margin: 0 0 8px 0 !important; }
-.permit-header p  { margin: 4px 0; font-size: 15px; opacity: 0.9; }
-
-/* ── Image container ────────────────────────────────────────────────── */
-.image-container {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  border: 2px solid var(--border-color);
-  margin: 12px 0;
-}
-
-/* ── Responsive: narrow screens (sidebar collapses) ─────────────────── */
-@media (max-width: 900px) {
-  .stApp h1 { font-size: 22px !important; }
-  .stApp h2 { font-size: 18px !important; }
-  .kpi-card .kpi-value { font-size: 24px; }
-  .block-container { padding: 0.5rem 0.5rem !important; }
-  .stTabs [data-baseweb="tab"] { padding: 10px 12px !important; font-size: 14px !important; }
-}
+<style>
+    /* ── Google Fonts (online) — Helvetica Neue system font takes priority ── */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+
+    /* ── CSS Custom Properties (Brand Tokens) ────────────────────────────── */
+    :root {
+      /* Brand palette */
+      --mos-cyan: #3ECFCF;
+      --mos-navy: #071539;
+      --mos-near-black: #2d2926;
+      --mos-purple: #D04EFF;
+      --mos-blue: #007BFF;
+      --mos-white: #FFFFFF;
+      /* Safety colours */
+      --safe-green: #1ABF74;
+      --caution-amber: #F5A623;
+      --danger-red: #E8392D;
+      --stop-red: #CC0000;
+      --info-teal: #3ECFCF;
+      /* Surfaces */
+      --sidebar-bg: #071539;
+      --page-bg: #F4F6F9;
+      --card-bg: #FFFFFF;
+      --border-color: #E2E6EA;
+      /* Typography */
+      --font-stack: 'Helvetica Neue', 'Inter', 'Helvetica', 'Arial', sans-serif;
+      --font-size-body: 16px;
+      --font-size-small: 14px;
+      --font-size-large: 18px;
+      --font-size-h1: 28px;
+      --font-size-h2: 22px;
+      --font-size-h3: 18px;
+      --font-size-btn: 17px;
+      --font-size-label: 13px;
+      /* Spacing */
+      --radius: 8px;
+      --radius-lg: 12px;
+      --shadow: 0 2px 12px rgba(7,21,57,0.10);
+      --shadow-hover: 0 4px 20px rgba(7,21,57,0.18);
+    }
+
+    /* ── High Contrast Mode ──────────────────────────────────────────────── */
+    body.high-contrast {
+      --page-bg: #000000;
+      --card-bg: #111111;
+      --border-color: #FFFFFF;
+      --mos-cyan: #00FFFF;
+      --safe-green: #00FF88;
+      --caution-amber: #FFCC00;
+      --danger-red: #FF2200;
+      color: #FFFFFF !important;
+    }
+
+    /* ── Global Reset & Typography ──────────────────────────────────────── */
+    html, body, [class*="css"] {
+      font-family: var(--font-stack) !important;
+      font-size: var(--font-size-body) !important;
+      color: var(--mos-near-black) !important;   /* FORCED DARK TEXT ON LIGHT BACKGROUNDS */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Remove default Streamlit top padding */
+    .block-container {
+      padding-top: 1rem !important;
+      padding-bottom: 2rem !important;
+      max-width: 100% !important;
+    }
+
+    /* ── Streamlit Page Background ─────────────────────────────────────── */
+    .stApp {
+      background-color: var(--page-bg) !important;
+      color: var(--mos-near-black) !important;
+    }
+
+    /* ── Sidebar (dark background) ─────────────────────────────────────── */
+    section[data-testid="stSidebar"] {
+      background-color: var(--sidebar-bg) !important;
+      border-right: 2px solid rgba(62,207,207,0.25) !important;
+    }
+    section[data-testid="stSidebar"] * {
+      color: var(--mos-white) !important;
+    }
+
+    /* ── Tabs – light background, forced dark text ─────────────────────── */
+    .stTabs [data-baseweb="tab-list"] { gap: 6px; }
+    .stTabs [data-baseweb="tab"] {
+        height: 48px;
+        padding: 0 16px;
+        background-color: #e8ecf0;
+        border-radius: 6px 6px 0 0;
+        font-weight: 600;
+        font-size: 13px;
+        color: #212529 !important;   /* DARK TEXT ON LIGHT TAB BACKGROUND */
+    }
+
+    /* ── KPI / Metric Cards – forced dark text ─────────────────────────── */
+    div[data-testid="stMetric"] {
+        background: var(--card-bg) !important;
+        border-left: 4px solid var(--mos-cyan) !important;
+        border-radius: 6px;
+        padding: 12px;
+        color: #212529 !important;   /* DARK TEXT */
+    }
+    [data-testid="stMetricLabel"] {
+        font-size: var(--font-size-label) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.8px !important;
+        color: #212529 !important;
+    }
+    [data-testid="stMetricValue"] {
+        font-size: 28px !important;
+        font-weight: 900 !important;
+        color: var(--mos-navy) !important;
+    }
+
+    /* ── Section Headers ───────────────────────────────────────────────── */
+    .section-header {
+        background: linear-gradient(90deg, #1e3a5f, #2d6096);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        margin: 12px 0 8px 0;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    /* ── Risk / Alert Boxes – forced dark text ─────────────────────────── */
+    .risk-low { 
+        background:#d4edda; 
+        border-left:4px solid #28a745; 
+        padding:8px 14px; 
+        border-radius:4px; 
+        margin:4px 0; 
+        color: #212529 !important; 
+    }
+    .risk-medium { 
+        background:#fff3cd; 
+        border-left:4px solid #ffc107; 
+        padding:8px 14px; 
+        border-radius:4px; 
+        margin:4px 0; 
+        color: #212529 !important; 
+    }
+    .risk-high { 
+        background:#f8d7da; 
+        border-left:4px solid #dc3545; 
+        padding:8px 14px; 
+        border-radius:4px; 
+        margin:4px 0; 
+        color: #212529 !important; 
+    }
+
+    /* ── Lock Counter & Step Indicators ─────────────────────────────────── */
+    .lock-counter {
+        background: #1e3a5f;
+        color: white;
+        border-radius: 8px;
+        padding: 12px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .step-complete { color: #28a745; font-weight: 700; }
+    .step-active { color: #007bff; font-weight: 700; }
+    .step-pending { color: #adb5bd; }
+
+    /* ── Permit Frame & Footer – dark text on light background ─────────── */
+    .permit-frame {
+        border: 3px solid #0f3460;
+        border-radius: 12px;
+        padding: 1.5rem;
+        background: #f8f9fa;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        color: #212529 !important;
+    }
+    .footer { 
+        font-size:0.78rem; 
+        color:#343a40; 
+        border-top:1px solid #dee2e6; 
+        padding-top:0.6rem; 
+        margin-top:1rem; 
+    }
+
+    /* ── Progress text – dark for readability ───────────────────────────── */
+    .prog-text { 
+        text-align:center; 
+        font-size:0.84rem; 
+        color:#343a40; 
+    }
+</style>
