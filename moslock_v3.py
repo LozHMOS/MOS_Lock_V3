@@ -248,11 +248,9 @@ TWELVE_STEPS = [
     (12, "Check Operation",             "restoration"),
 ]
 
-
 # ═══════════════════════════════════════════════════════════════════════════════
 # CSS & THEME INJECTION
 # ═══════════════════════════════════════════════════════════════════════════════
-
 def load_css() -> str:
     """Load theme CSS from file, fall back to embedded minimal CSS."""
     css_path = Path(__file__).parent / "moslock_branding" / "theme.css"
@@ -269,32 +267,95 @@ def load_css() -> str:
     .stApp {{ background-color: {MOS_PAGE_BG} !important; }}
     section[data-testid="stSidebar"] {{ background-color: {MOS_SIDEBAR_BG} !important; }}
     section[data-testid="stSidebar"] * {{ color: {MOS_WHITE} !important; }}
-    .stButton > button {{
-        background-color: {MOS_CYAN} !important;
-        color: {MOS_NEAR_BLACK} !important;
-        font-weight: 700 !important;
-        min-height: 48px !important;
-        border-radius: 8px !important;
-    }}
     """
 
-
 def inject_css(high_contrast: bool = False):
+    """Inject brand CSS with very strong dark-text overrides for tablet readability."""
     css = load_css()
-    if high_contrast:
-        # Append high-contrast overrides
-        css += """
-        .stApp { background-color: #000000 !important; color: #FFFFFF !important; }
-        [class*="css"] { color: #FFFFFF !important; }
-        """
-    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
-    # Also inject Google Fonts link tag
+    # High-contrast overrides (underground / low-light tablet use)
+    if high_contrast:
+        css += """
+        .stApp, [class*="css"], .stMarkdown, p, label, span, div, .stTabs, .stMetric, .stExpander {
+            color: #FFFFFF !important;
+        }
+        """
+
+    # Full inline high-specificity CSS block – this is what finally forces dark text
+    st.markdown(f"""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+
+    :root {{
+      --mos-cyan: #3ECFCF;
+      --mos-navy: #071539;
+      --mos-near-black: #2d2926;
+      --mos-purple: #D04EFF;
+      --mos-blue: #007BFF;
+      --mos-white: #FFFFFF;
+      --safe-green: #1ABF74;
+      --caution-amber: #F5A623;
+      --danger-red: #E8392D;
+      --stop-red: #CC0000;
+      --info-teal: #3ECFCF;
+      --sidebar-bg: #071539;
+      --page-bg: #F4F6F9;
+      --card-bg: #FFFFFF;
+      --border-color: #E2E6EA;
+      --font-stack: 'Helvetica Neue', 'Inter', 'Helvetica', 'Arial', sans-serif;
+    }}
+
+    /* FORCE DARK TEXT ON EVERY LIGHT BACKGROUND */
+    html, body, [class*="css"], .stApp, .stMarkdown, p, label, span, div,
+    .stTabs, .stMetric, .stExpander, .stDataFrame, .stButton, .stTextInput,
+    .stSelectbox, .stNumberInput, .stSlider, .stCheckbox, .stRadio {
+      font-family: var(--font-stack) !important;
+      font-size: 16px !important;
+      color: var(--mos-near-black) !important;
+    }}
+
+    .stApp {{ background-color: var(--page-bg) !important; }}
+
+    /* Tabs – light background, forced dark text */
+    .stTabs [data-baseweb="tab"] {{
+      background-color: #e8ecf0 !important;
+      color: #212529 !important;
+    }}
+
+    /* KPI / Metric cards */
+    div[data-testid="stMetric"] {{
+      background: var(--card-bg) !important;
+      color: #212529 !important;
+    }}
+
+    /* Risk / verdict boxes */
+    .risk-low, .risk-medium, .risk-high, .verdict-banner, .stop-alert {{
+      color: #212529 !important;
+    }}
+
+    /* Permit frame & tables */
+    .permit-frame, .rule-table, .compartment-grid {{
+      background: #f8f9fa !important;
+      color: #212529 !important;
+    }}
+
+    /* Footer & progress text */
+    .footer, .prog-text, .mos-footer {{
+      color: #343a40 !important;
+    }}
+
+    /* Sidebar remains dark with white text */
+    section[data-testid="stSidebar"] * {{ color: var(--mos-white) !important; }}
+
+    /* PIL-drawn label text on images (already dark where needed) */
+    </style>
+    """, unsafe_allow_html=True)
+
+    # Google Fonts link
     st.markdown(
         f'<link href="{GOOGLE_FONT_URL}" rel="stylesheet">',
         unsafe_allow_html=True,
     )
-
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # IMAGE UTILITIES
