@@ -1,0 +1,16 @@
+# .streamlit/config.toml
+# Forces Streamlit's built-in light theme — do not override this.
+# All custom styling is limited to injected HTML components only.
+
+[theme]
+base = "light"
+primaryColor        = "#3ECFCF"
+backgroundColor     = "#FFFFFF"
+secondaryBackgroundColor = "#F0F2F6"
+textColor           = "#262730"
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false
