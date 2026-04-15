@@ -1,191 +1,199 @@
-<style>
-    /* ── Google Fonts (online) — Helvetica Neue system font takes priority ── */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+/*
+ * moslock_branding/theme.css
+ * MOSLock V3 — Mapped Out Solutions® Brand Stylesheet
+ * All visual styling for the Streamlit app lives here.
+ * Swap colours/fonts by editing the :root variables below.
+ *
+ * Tablet target: Samsung Galaxy Tab S10, 1920×1200, 10.1-inch
+ * Min touch target: 48px | Body font: 16px | Headers: 20px+
+ */
+/* ── Google Fonts (online) — Helvetica Neue system font takes priority ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
-    /* ── CSS Custom Properties (Brand Tokens) ────────────────────────────── */
-    :root {
-      /* Brand palette */
-      --mos-cyan: #3ECFCF;
-      --mos-navy: #071539;
-      --mos-near-black: #2d2926;
-      --mos-purple: #D04EFF;
-      --mos-blue: #007BFF;
-      --mos-white: #FFFFFF;
-      /* Safety colours */
-      --safe-green: #1ABF74;
-      --caution-amber: #F5A623;
-      --danger-red: #E8392D;
-      --stop-red: #CC0000;
-      --info-teal: #3ECFCF;
-      /* Surfaces */
-      --sidebar-bg: #071539;
-      --page-bg: #F4F6F9;
-      --card-bg: #FFFFFF;
-      --border-color: #E2E6EA;
-      /* Typography */
-      --font-stack: 'Helvetica Neue', 'Inter', 'Helvetica', 'Arial', sans-serif;
-      --font-size-body: 16px;
-      --font-size-small: 14px;
-      --font-size-large: 18px;
-      --font-size-h1: 28px;
-      --font-size-h2: 22px;
-      --font-size-h3: 18px;
-      --font-size-btn: 17px;
-      --font-size-label: 13px;
-      /* Spacing */
-      --radius: 8px;
-      --radius-lg: 12px;
-      --shadow: 0 2px 12px rgba(7,21,57,0.10);
-      --shadow-hover: 0 4px 20px rgba(7,21,57,0.18);
-    }
+/* ── CSS Custom Properties (Brand Tokens) ────────────────────────────── */
+:root {
+  /* Brand palette */
+  --mos-cyan: #3ECFCF;
+  --mos-navy: #071539;
+  --mos-near-black: #2d2926;
+  --mos-purple: #D04EFF;
+  --mos-blue: #007BFF;
+  --mos-white: #FFFFFF;
+  /* Safety colours — semantic meaning preserved */
+  --safe-green: #1ABF74;
+  --caution-amber: #F5A623;
+  --danger-red: #E8392D;
+  --stop-red: #CC0000;
+  --info-teal: #3ECFCF;
+  /* Surfaces */
+  --sidebar-bg: #071539;
+  --page-bg: #F4F6F9;
+  --card-bg: #FFFFFF;
+  --border-color: #E2E6EA;
+  /* Typography */
+  --font-stack: 'Helvetica Neue', 'Inter', 'Helvetica', 'Arial', sans-serif;
+  --font-size-body: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  --font-size-h1: 28px;
+  --font-size-h2: 22px;
+  --font-size-h3: 18px;
+  --font-size-btn: 17px;
+  --font-size-label: 13px;
+  /* Spacing */
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 2px 12px rgba(7,21,57,0.10);
+  --shadow-hover: 0 4px 20px rgba(7,21,57,0.18);
+}
 
-    /* ── High Contrast Mode ──────────────────────────────────────────────── */
-    body.high-contrast {
-      --page-bg: #000000;
-      --card-bg: #111111;
-      --border-color: #FFFFFF;
-      --mos-cyan: #00FFFF;
-      --safe-green: #00FF88;
-      --caution-amber: #FFCC00;
-      --danger-red: #FF2200;
-      color: #FFFFFF !important;
-    }
+/* ── High Contrast Mode ──────────────────────────────────────────────── */
+body.high-contrast {
+  --page-bg: #000000;
+  --card-bg: #111111;
+  --border-color: #FFFFFF;
+  --mos-cyan: #00FFFF;
+  --safe-green: #00FF88;
+  --caution-amber:#FFCC00;
+  --danger-red: #FF2200;
+  color: #FFFFFF !important;
+}
 
-    /* ── Global Reset & Typography ──────────────────────────────────────── */
-    html, body, [class*="css"] {
-      font-family: var(--font-stack) !important;
-      font-size: var(--font-size-body) !important;
-      color: var(--mos-near-black) !important;   /* FORCED DARK TEXT ON LIGHT BACKGROUNDS */
-      -webkit-font-smoothing: antialiased;
-    }
+/* ── Global Reset & Typography – FORCE DARK TEXT ON LIGHT BACKGROUNDS ── */
+html, body, [class*="css"], .stApp, .stMarkdown, p, label, span, div {
+  font-family: var(--font-stack) !important;
+  font-size: var(--font-size-body) !important;
+  color: var(--mos-near-black) !important;   /* DARK TEXT FOR READABILITY */
+  -webkit-font-smoothing: antialiased;
+}
 
-    /* Remove default Streamlit top padding */
-    .block-container {
-      padding-top: 1rem !important;
-      padding-bottom: 2rem !important;
-      max-width: 100% !important;
-    }
+/* Remove default Streamlit top padding */
+.block-container {
+  padding-top: 1rem !important;
+  padding-bottom: 2rem !important;
+  max-width: 100% !important;
+}
 
-    /* ── Streamlit Page Background ─────────────────────────────────────── */
-    .stApp {
-      background-color: var(--page-bg) !important;
-      color: var(--mos-near-black) !important;
-    }
+/* ── Streamlit Page Background ─────────────────────────────────────── */
+.stApp {
+  background-color: var(--page-bg) !important;
+}
 
-    /* ── Sidebar (dark background) ─────────────────────────────────────── */
-    section[data-testid="stSidebar"] {
-      background-color: var(--sidebar-bg) !important;
-      border-right: 2px solid rgba(62,207,207,0.25) !important;
-    }
-    section[data-testid="stSidebar"] * {
-      color: var(--mos-white) !important;
-    }
+/* ── Sidebar (dark background) – keep white text ───────────────────── */
+section[data-testid="stSidebar"] {
+  background-color: var(--sidebar-bg) !important;
+  border-right: 2px solid rgba(62,207,207,0.25) !important;
+}
+section[data-testid="stSidebar"] * {
+  color: var(--mos-white) !important;
+}
 
-    /* ── Tabs – light background, forced dark text ─────────────────────── */
-    .stTabs [data-baseweb="tab-list"] { gap: 6px; }
-    .stTabs [data-baseweb="tab"] {
-        height: 48px;
-        padding: 0 16px;
-        background-color: #e8ecf0;
-        border-radius: 6px 6px 0 0;
-        font-weight: 600;
-        font-size: 13px;
-        color: #212529 !important;   /* DARK TEXT ON LIGHT TAB BACKGROUND */
-    }
+/* ── Tabs – light background, forced dark text ─────────────────────── */
+.stTabs [data-baseweb="tab-list"] { gap: 6px; }
+.stTabs [data-baseweb="tab"] {
+    height: 48px;
+    padding: 0 16px;
+    background-color: #e8ecf0;
+    border-radius: 6px 6px 0 0;
+    font-weight: 600;
+    font-size: 13px;
+    color: #212529 !important;   /* DARK TEXT */
+}
 
-    /* ── KPI / Metric Cards – forced dark text ─────────────────────────── */
-    div[data-testid="stMetric"] {
-        background: var(--card-bg) !important;
-        border-left: 4px solid var(--mos-cyan) !important;
-        border-radius: 6px;
-        padding: 12px;
-        color: #212529 !important;   /* DARK TEXT */
-    }
-    [data-testid="stMetricLabel"] {
-        font-size: var(--font-size-label) !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.8px !important;
-        color: #212529 !important;
-    }
-    [data-testid="stMetricValue"] {
-        font-size: 28px !important;
-        font-weight: 900 !important;
-        color: var(--mos-navy) !important;
-    }
+/* ── KPI / Metric Cards – forced dark text ─────────────────────────── */
+div[data-testid="stMetric"] {
+    background: var(--card-bg) !important;
+    border-left: 4px solid var(--mos-cyan) !important;
+    border-radius: 6px;
+    padding: 12px;
+    color: #212529 !important;
+}
+[data-testid="stMetricLabel"] { color: #212529 !important; }
+[data-testid="stMetricValue"] { color: var(--mos-navy) !important; }
 
-    /* ── Section Headers ───────────────────────────────────────────────── */
-    .section-header {
-        background: linear-gradient(90deg, #1e3a5f, #2d6096);
-        color: white;
-        padding: 8px 16px;
-        border-radius: 6px;
-        margin: 12px 0 8px 0;
-        font-weight: 700;
-        font-size: 15px;
-    }
+/* ── Section Headers – already good ────────────────────────────────── */
+.section-header {
+    background: linear-gradient(90deg, #1e3a5f, #2d6096);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin: 12px 0 8px 0;
+    font-weight: 700;
+    font-size: 15px;
+}
 
-    /* ── Risk / Alert Boxes – forced dark text ─────────────────────────── */
-    .risk-low { 
-        background:#d4edda; 
-        border-left:4px solid #28a745; 
-        padding:8px 14px; 
-        border-radius:4px; 
-        margin:4px 0; 
-        color: #212529 !important; 
-    }
-    .risk-medium { 
-        background:#fff3cd; 
-        border-left:4px solid #ffc107; 
-        padding:8px 14px; 
-        border-radius:4px; 
-        margin:4px 0; 
-        color: #212529 !important; 
-    }
-    .risk-high { 
-        background:#f8d7da; 
-        border-left:4px solid #dc3545; 
-        padding:8px 14px; 
-        border-radius:4px; 
-        margin:4px 0; 
-        color: #212529 !important; 
-    }
+/* ── Risk / Alert Boxes – forced dark text ─────────────────────────── */
+.risk-low { 
+    background:#d4edda; 
+    border-left:4px solid #28a745; 
+    padding:8px 14px; 
+    border-radius:4px; 
+    margin:4px 0; 
+    color: #212529 !important; 
+}
+.risk-medium { 
+    background:#fff3cd; 
+    border-left:4px solid #ffc107; 
+    padding:8px 14px; 
+    border-radius:4px; 
+    margin:4px 0; 
+    color: #212529 !important; 
+}
+.risk-high { 
+    background:#f8d7da; 
+    border-left:4px solid #dc3545; 
+    padding:8px 14px; 
+    border-radius:4px; 
+    margin:4px 0; 
+    color: #212529 !important; 
+}
 
-    /* ── Lock Counter & Step Indicators ─────────────────────────────────── */
-    .lock-counter {
-        background: #1e3a5f;
-        color: white;
-        border-radius: 8px;
-        padding: 12px;
-        text-align: center;
-        font-size: 20px;
-        font-weight: 700;
-    }
-    .step-complete { color: #28a745; font-weight: 700; }
-    .step-active { color: #007bff; font-weight: 700; }
-    .step-pending { color: #adb5bd; }
+/* ── Lock Counter & Step Indicators – already good ─────────────────── */
+.lock-counter {
+    background: #1e3a5f;
+    color: white;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+.step-complete { color: #28a745; font-weight: 700; }
+.step-active { color: #007bff; font-weight: 700; }
+.step-pending { color: #adb5bd; }
 
-    /* ── Permit Frame & Footer – dark text on light background ─────────── */
-    .permit-frame {
-        border: 3px solid #0f3460;
-        border-radius: 12px;
-        padding: 1.5rem;
-        background: #f8f9fa;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        color: #212529 !important;
-    }
-    .footer { 
-        font-size:0.78rem; 
-        color:#343a40; 
-        border-top:1px solid #dee2e6; 
-        padding-top:0.6rem; 
-        margin-top:1rem; 
-    }
+/* ── Permit Frame – forced dark text ───────────────────────────────── */
+.permit-frame {
+    border: 3px solid #0f3460;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: #212529 !important;
+}
 
-    /* ── Progress text – dark for readability ───────────────────────────── */
-    .prog-text { 
-        text-align:center; 
-        font-size:0.84rem; 
-        color:#343a40; 
-    }
+/* ── Footer – darker text ──────────────────────────────────────────── */
+.footer { 
+    font-size:0.78rem; 
+    color:#343a40; 
+    border-top:1px solid #dee2e6; 
+    padding-top:0.6rem; 
+    margin-top:1rem; 
+}
+
+/* ── Progress text – darker ────────────────────────────────────────── */
+.prog-text { 
+    text-align:center; 
+    font-size:0.84rem; 
+    color:#343a40; 
+}
+
+/* ── Responsive adjustments (unchanged) ────────────────────────────── */
+@media (max-width: 900px) {
+  .stApp h1 { font-size: 22px !important; }
+  .stApp h2 { font-size: 18px !important; }
+  .kpi-card .kpi-value { font-size: 24px; }
+  .block-container { padding: 0.5rem 0.5rem !important; }
+  .stTabs [data-baseweb="tab"] { padding: 10px 12px !important; font-size: 14px !important; }
+}
 </style>
