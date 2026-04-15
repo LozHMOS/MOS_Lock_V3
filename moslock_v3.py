@@ -281,7 +281,7 @@ def inject_css(high_contrast: bool = False):
         }
         """
 
-    # Full inline high-specificity CSS block – this is what finally forces dark text
+    # Full inline high-specificity CSS block – dark text on ALL light backgrounds
     st.markdown(f"""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
@@ -308,7 +308,10 @@ def inject_css(high_contrast: bool = False):
     /* FORCE DARK TEXT ON EVERY LIGHT BACKGROUND */
     html, body, [class*="css"], .stApp, .stMarkdown, p, label, span, div,
     .stTabs, .stMetric, .stExpander, .stDataFrame, .stButton, .stTextInput,
-    .stSelectbox, .stNumberInput, .stSlider, .stCheckbox, .stRadio {
+    .stSelectbox, .stNumberInput, .stSlider, .stCheckbox, .stRadio,
+    .kpi-card, .permit-header, .verdict-banner, .stop-alert, .rule-table,
+    .compartment-grid, .step-indicator, .lock-chip, .mos-footer,
+    .permit-frame, .scroll-table-wrapper {
       font-family: var(--font-stack) !important;
       font-size: 16px !important;
       color: var(--mos-near-black) !important;
@@ -346,8 +349,6 @@ def inject_css(high_contrast: bool = False):
 
     /* Sidebar remains dark with white text */
     section[data-testid="stSidebar"] * {{ color: var(--mos-white) !important; }}
-
-    /* PIL-drawn label text on images (already dark where needed) */
     </style>
     """, unsafe_allow_html=True)
 
@@ -356,7 +357,6 @@ def inject_css(high_contrast: bool = False):
         f'<link href="{GOOGLE_FONT_URL}" rel="stylesheet">',
         unsafe_allow_html=True,
     )
-
 # ═══════════════════════════════════════════════════════════════════════════════
 # IMAGE UTILITIES
 # ═══════════════════════════════════════════════════════════════════════════════
