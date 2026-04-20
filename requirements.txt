@@ -5,8 +5,8 @@ Pillow>=11.0.0
 pandas>=2.0.0
 
 # Scenario 3 (Tablet Live — add these for ONNX inference):
-# onnxruntime>=1.20.0
-# numpy>=1.26.4
+onnxruntime>=1.20.0
+numpy>=1.26.4
 
 # Note: onnxruntime and numpy are commented out for Streamlit Community Cloud
 # deployment (Live Mode is disabled gracefully when not installed).
